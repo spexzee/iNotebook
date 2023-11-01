@@ -1,0 +1,9 @@
+.nav__bar:hover {
+    color: #0bd723;
+    transition: all 0.4s ease;
+}
+
+.nav__bar:focus {
+    color: #0bd723;
+    text-decoration: underline;
+}
