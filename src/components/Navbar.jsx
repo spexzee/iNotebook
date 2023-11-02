@@ -1,16 +1,17 @@
 import React from 'react';
-import './navbar.css'
 import { Link } from 'react-router-dom';
+import logo from '../../src/assets/notebook3.png'
 
-const Navbar = (props) => {
 
+const Navbar = () => {
     return (
         <>
 
-            <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} w-100`}>
+            <nav className={`navbar navbar-expand-lg navbar-dark bg-dark w-100`}>
                 <div className="container-fluid">
                     <Link style={{ userSelect: 'none', fontWeight: 600, fontSize: '25px' }} className="navbar-brand" to="/">
-                        TextUtils
+                        <img src={logo} alt="logo" height={24} width={30} />
+                        iNote-Book
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -36,30 +37,6 @@ const Navbar = (props) => {
                                 </Link>
                             </li>
                         </ul>
-                        {/* <form className="d-flex" role="search">
-                            <input
-                                className="form-control me-2"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-                            <button className="btn btn-success" type="submit">
-                                Search
-                            </button>
-                        </form> */}
-                        {/* <div className="form-check form-switch">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id="flexSwitchCheckDefault"
-                                onClick={props.toggleMode}
-                            />
-                            <label style={{ userSelect: 'none' }} className={`form-check-label text-${props.mode === 'light' ? 'dark' : 'light'}`} htmlFor="flexSwitchCheckDefault">
-                                {props.mode === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
-                            </label>
-                        </div> */}
-
                     </div>
                 </div>
             </nav>
