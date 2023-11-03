@@ -1,8 +1,12 @@
+import EditNote from "./EditNote"
 
 
 const About = () => {
   return (
-    <div>Home</div>
+    <>
+      <div>About</div>
+      <EditNote />
+    </>
   )
 }
 

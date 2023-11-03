@@ -7,3 +7,16 @@
     color: #0bd723;
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 991px) and (min-width: 767px) {
+    .media-query {
+        width: 18rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .media-query {
+        width: 38rem;
+        justify-content: center;
+    }
+}
