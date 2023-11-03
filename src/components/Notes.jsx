@@ -127,6 +127,7 @@ const Notes = () => {
         </div>
       </div>
       <div className="row my-3">
+        <h1 className='text-center'>{notes.length === 0 && ' Please Add Notes to Display here!!'}</h1>
         {
           Array.isArray(notes) && notes.map((note) => {
             return <NotesItem key={note._id} updateNote={updateNote} note={note} />

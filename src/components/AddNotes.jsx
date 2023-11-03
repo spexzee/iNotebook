@@ -10,11 +10,8 @@ const AddNotes = () => {
         e.preventDefault()
         addNote(note.title, note.description, note.tag)
 
-        setTimeout(() => {
-            document.getElementById('title').value = '';
-            document.getElementById('description').value = '';
-            document.getElementById('tag').value = '';
-        }, 500);
+        //this will clear input fields after adding note
+        setNote({ title: "", description: "", tag: "" })
     }
 
     const onChange = (e) => {
@@ -28,6 +25,7 @@ const AddNotes = () => {
                     Title
                 </label>
                 <input
+                    value={note.title}
                     type="text"
                     className="form-control"
                     id="title"
@@ -41,11 +39,11 @@ const AddNotes = () => {
                     Description
                 </label>
                 <textarea
+                    value={note.description}
                     className="form-control"
                     id="description"
                     name="description"
                     rows={3}
-                    defaultValue={""}
                     onChange={onChange}
                     style={{ border: '1px solid black' }}
                 />
@@ -55,6 +53,7 @@ const AddNotes = () => {
                     Tag
                 </label>
                 <input
+                    value={note.tag}
                     type="text"
                     className="form-control tags"
                     id="tag"
