@@ -1,5 +1,5 @@
 import './App.css';
-import { Navbar, Home, About } from '../src/components'
+import { Navbar, Home, About, Login, Signup } from '../src/components'
 import React from 'react';
 import {
   BrowserRouter,
@@ -10,6 +10,9 @@ import NoteState from './context/notes/NoteState';
 
 
 function App() {
+  if (!navigator.onLine) {
+    alert('Please check your internet connection')
+  }
 
   return (
     <>
@@ -18,8 +21,13 @@ function App() {
           <Navbar />
           <div className="container my-3">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home />}>
+              </Route>
               <Route path="/about" element={<About />}>
+              </Route>
+              <Route path="/login" element={<Login />}>
+              </Route>
+              <Route path="/signup" element={<Signup />}>
               </Route>
             </Routes>
           </div>
