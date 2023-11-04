@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Login = (props) => {
     const host = 'http://localhost:5000';
     let navigate = useNavigate();
     const [cred, setCred] = useState({ email: '', password: '' });
+
+    // props destructring 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,10 +22,11 @@ const Login = () => {
         console.log(json);
         if (json.success) {
             window.localStorage.setItem('auth-token', json.authtoken);//save the authtoken in local storage for tempararily
+            props.showAlert('Successfully Loged In', 'success')
             navigate('/')
         }
         else {
-            alert('enter valid info')
+            props.showAlert('Invalid Inputs', 'danger')
         }
     }
 
@@ -35,7 +38,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className='container border border-black p-4 mt-4'>
                 <div className="mb-3 ">
                     <h2 className='mb-4'>Log In</h2>
-                    <label htmlFor="exampleInputEmail1" className="form-label">
+                    <label htmlFor="email" className="form-label">
                         Email address
                     </label>
                     <input
@@ -50,7 +53,7 @@ const Login = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">
+                    <label htmlFor="password" className="form-label">
                         Password
                     </label>
                     <input

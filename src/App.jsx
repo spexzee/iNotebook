@@ -1,6 +1,6 @@
 import './App.css';
-import { Navbar, Home, About, Login, Signup } from '../src/components'
-import React from 'react';
+import { Navbar, Home, About, Login, Signup, Alert } from '../src/components'
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -14,20 +14,31 @@ function App() {
     alert('Please check your internet connection')
   }
 
+  const [alert, setAlert] = useState(null)
+  const showAlert = (msg, type) => {
+    setAlert({
+      msg, type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
+
   return (
     <>
       <NoteState>
         <BrowserRouter>
           <Navbar />
+          <Alert alert={alert} />
           <div className="container my-3">
             <Routes>
-              <Route path="/" element={<Home />}>
+              <Route path="/" element={<Home showAlert={showAlert} />}>
               </Route>
               <Route path="/about" element={<About />}>
               </Route>
-              <Route path="/login" element={<Login />}>
+              <Route path="/login" element={<Login showAlert={showAlert} />}>
               </Route>
-              <Route path="/signup" element={<Signup />}>
+              <Route path="/signup" element={<Signup showAlert={showAlert} />}>
               </Route>
             </Routes>
           </div>

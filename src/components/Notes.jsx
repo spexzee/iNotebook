@@ -5,7 +5,7 @@ import AddNotes from './AddNotes';
 
 
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
