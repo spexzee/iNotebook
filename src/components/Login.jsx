@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
@@ -70,6 +70,7 @@ const Login = (props) => {
                 <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
+                <p className='my-2'>Dont have an account ? <Link to='/signup'>Sign Up</Link></p>
             </form>
         </>
 

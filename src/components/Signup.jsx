@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
 
 const Signup = (props) => {
@@ -38,7 +38,7 @@ const Signup = (props) => {
         <>
             <div className="">
                 <form onSubmit={handleSubmit} className='container border border-black p-4 mt-4'>
-                    <h2 className='mb-4'>Sign Up</h2>
+                    <h2 className='mb-4'>create an account to use iNote-Book</h2>
                     <div className="mb-3 ">
                         <label htmlFor="name" className="form-label">
                             Full Name
@@ -99,6 +99,7 @@ const Signup = (props) => {
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
+                    <p className='my-2'>Already have an account ? <Link to='/login'>Log in</Link></p>
                 </form>
             </div>
         </>

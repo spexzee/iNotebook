@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Notes = (props) => {
   const context = useContext(noteContext);
+
   const { notes, getNotes, editNote } = context;
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
@@ -15,7 +16,12 @@ const Notes = (props) => {
   const { showAlert } = props;
 
   useEffect(() => {
-    getNotes()
+    const authToken = localStorage.getItem('auth-token')
+    if (!authToken) {
+      window.location.href = '/login';
+    } else {
+      getNotes() //render notes
+    }
   }, [])
 
   const ref = useRef(null)
@@ -82,6 +88,7 @@ const Notes = (props) => {
                   type="text"
                   className="form-control"
                   id="etitle"
+                  required
                   name="etitle"
                   onChange={onChange}
                   style={{ border: '1px solid black' }}
@@ -95,6 +102,7 @@ const Notes = (props) => {
                   value={note.edescription}
                   className="form-control"
                   id="edescription"
+                  required
                   name="edescription"
                   rows={3}
                   onChange={onChange}
@@ -125,7 +133,7 @@ const Notes = (props) => {
               >
                 Close
               </button>
-              <button disabled={etitle.length <= 5 || edescription.length <= 5} type="button" className="btn btn-primary" onClick={handleClickAdd}>
+              <button disabled={etitle.length < 5 || edescription.length < 5} type="button" className="btn btn-primary" onClick={handleClickAdd}>
                 Update Note
               </button>
             </div>

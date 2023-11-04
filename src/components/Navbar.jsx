@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom';
 import logo from '../../src/assets/notebook3.png'
 
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+    const { showAlert } = props;
+
+    const handleLogout = () => {
+        localStorage.removeItem('auth-token');
+        showAlert('Loged out Successfully', 'success')
+        window.location.href = './login';
+    }
+
     return (
         <>
-
             <nav className={`navbar navbar-expand-lg navbar-dark bg-dark w-100`}>
                 <div className="container-fluid">
                     <Link style={{ userSelect: 'none', fontWeight: 600, fontSize: '25px' }} className="navbar-brand" to="/">
@@ -37,10 +45,13 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         </ul>
-                        <form className="d-flex">
-                            <Link className="btn btn-primary mx-1" to="/login" role="button">Log In</Link>
-                            <Link className="btn btn-primary mx-1" to="/signup" role="button">Sign Up</Link>
-                        </form>
+                        {!localStorage.getItem('auth-token')
+                            ? <form className="d-flex">
+                                <Link className="btn btn-primary mx-1" to="/login" role="button">Log In</Link>
+                                <Link className="btn btn-primary mx-1" to="/signup" role="button">Sign Up</Link>
+                            </form>
+                            : <button onClick={handleLogout} className="btn btn-primary mx-2">Log Out</button>
+                        }
                     </div>
                 </div>
             </nav>

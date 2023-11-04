@@ -36,6 +36,7 @@ const AddNotes = (props) => {
                     type="text"
                     className="form-control"
                     id="title"
+                    required
                     name="title"
                     onChange={onChange}
                     style={{ border: '1px solid black' }}
@@ -49,6 +50,7 @@ const AddNotes = (props) => {
                     value={note.description}
                     className="form-control"
                     id="description"
+                    required
                     name="description"
                     rows={3}
                     onChange={onChange}
@@ -70,7 +72,7 @@ const AddNotes = (props) => {
                 />
             </div>
             <div className="mb-3">
-                <button disabled={title.length <= 5 || description.length <= 5} type="button" className="btn btn-primary mx-2" onClick={handleClickAdd}>Add Note</button>
+                <button disabled={title.length < 5 || description.length < 5}  type="button" className="btn btn-primary mx-2" onClick={handleClickAdd}>Add Note</button>
                 <Link className="btn btn-primary mx-2" to="/" role="button">Show Notes</Link>
             </div>
         </div>
