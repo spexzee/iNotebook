@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
 
 const Signup = (props) => {
-    const host = 'http://localhost:5000';
+    const host = 'https://backend-chi-eight-74.vercel.app';
     let navigate = useNavigate();
     const [cred, setCred] = useState({ name: '', email: '', password: '', cpassword: '' })
     const { name, email, password, cpassword } = cred; // destructuring
