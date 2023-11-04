@@ -8,6 +8,7 @@ const Login = (props) => {
     const [cred, setCred] = useState({ email: '', password: '' });
 
     // props destructring 
+    const { showAlert } = props
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -22,11 +23,11 @@ const Login = (props) => {
         console.log(json);
         if (json.success) {
             window.localStorage.setItem('auth-token', json.authtoken);//save the authtoken in local storage for tempararily
-            props.showAlert('Successfully Loged In', 'success')
+            showAlert('LogedIn Successfully', 'success')
             navigate('/')
         }
         else {
-            props.showAlert('Invalid Inputs', 'danger')
+            showAlert('Invalid Inputs', 'danger')
         }
     }
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import NotesItem from './NotesItem';
 import noteContext from '../context/notes/noteContext';
-import AddNotes from './AddNotes';
+import { Link } from 'react-router-dom';
 
 
 
@@ -9,6 +9,10 @@ const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
+
+  const { id, etitle, edescription, etag } = note;
+
+  const { showAlert } = props;
 
   useEffect(() => {
     getNotes()
@@ -18,8 +22,9 @@ const Notes = (props) => {
   const refClose = useRef(null)
 
   const handleClickAdd = () => {
-    editNote(note.id, note.etitle, note.edescription, note.etag)
+    editNote(id, etitle, edescription, etag)
     refClose.current.click()
+    showAlert('Note Updated Successfully', 'success')
   }
 
   const onChange = (e) => {
@@ -35,7 +40,8 @@ const Notes = (props) => {
 
   return (
     <>
-      <AddNotes />
+      <Link className="btn btn-primary mb-3" to="/addnote" role="button">Click Here to Add Notes</Link>
+      <h2>Your Notes</h2>
       <button
         ref={ref}
         type="button"
@@ -119,7 +125,7 @@ const Notes = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleClickAdd}>
+              <button disabled={etitle.length <= 5 || edescription.length <= 5} type="button" className="btn btn-primary" onClick={handleClickAdd}>
                 Update Note
               </button>
             </div>
@@ -130,7 +136,7 @@ const Notes = (props) => {
         <h1 className='text-center'>{notes.length === 0 && ' Please Add Notes to Display here!!'}</h1>
         {
           Array.isArray(notes) && notes.map((note) => {
-            return <NotesItem key={note._id} updateNote={updateNote} note={note} />
+            return <NotesItem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} />
           })
         }
       </div>

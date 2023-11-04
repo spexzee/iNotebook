@@ -7,6 +7,9 @@ const Signup = (props) => {
     const [cred, setCred] = useState({ name: '', email: '', password: '', cpassword: '' })
     const { name, email, password, cpassword } = cred; // destructuring
 
+    // props destructring 
+    const { showAlert } = props
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const response = await fetch(`${host}/api/auth/createuser`, {
@@ -18,11 +21,11 @@ const Signup = (props) => {
         console.log(json);
         if (json.success) {
             window.localStorage.setItem('auth-token', json.authtoken);//save the authtoken in local storage for tempararily
-            props.showAlert('Account Created Successfully', 'success')
+            showAlert('Account Created Successfully', 'success')
             navigate('/')
         }
         else {
-            props.showAlert('Invalid Inputs', 'danger')
+            showAlert('Invalid Inputs', 'danger')
         }
     }
 

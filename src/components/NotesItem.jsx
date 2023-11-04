@@ -3,6 +3,9 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import noteContext from '../context/notes/noteContext';
 
 const NotesItem = (props) => {
+
+  const { showAlert } = props;
+
   const context = useContext(noteContext);
   const { deleteNote } = context;
   const { note, updateNote } = props;
@@ -14,9 +17,14 @@ const NotesItem = (props) => {
             <div className="">
               <h5 className="card-title">{note.title}</h5>
             </div>
-            <div className="d-flex gap-2">
+            <div className="d-flex row-gap-1">
               <MdEdit color='blue' size={23} style={{ cursor: 'pointer' }} onClick={() => { updateNote(note) }} />
-              <MdDelete color='red' size={23} style={{ cursor: 'pointer' }} onClick={() => { deleteNote(note._id) }} />
+              <MdDelete color='red' size={23} style={{ cursor: 'pointer' }} onClick={(e) => {
+                e.preventDefault()
+                deleteNote(note._id)
+                showAlert('Note Deleted Successfully', 'success')
+              }} />
+
             </div>
           </div>
           <h6 className="card-subtitle mb-2 text-body-secondary" style={{ opacity: '0.5' }}>{note.tag === '' ? '#genral' : `#${note.tag}`}</h6>

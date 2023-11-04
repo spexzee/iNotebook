@@ -1,5 +1,5 @@
 import './App.css';
-import { Navbar, Home, About, Login, Signup, Alert } from '../src/components'
+import { Navbar, Home, About, Login, Signup, Alert, AddNotes } from '../src/components'
 import React, { useState } from 'react';
 import {
   BrowserRouter,
@@ -35,6 +35,9 @@ function App() {
               <Route path="/" element={<Home showAlert={showAlert} />}>
               </Route>
               <Route path="/about" element={<About />}>
+              </Route>
+              <Route path="/addnote" element={<AddNotes showAlert={showAlert} />
+              }>
               </Route>
               <Route path="/login" element={<Login showAlert={showAlert} />}>
               </Route>

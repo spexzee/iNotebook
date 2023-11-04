@@ -1,15 +1,22 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../context/notes/noteContext'
+import { Link } from 'react-router-dom';
 
-const AddNotes = () => {
+const AddNotes = (props) => {
     const context = useContext(noteContext);
     const { addNote } = context;
     const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
+    const { title, description, tag } = note;
+
+    // props destructring 
+    const { showAlert } = props
+
     const handleClickAdd = (e) => {
         e.preventDefault()
-        addNote(note.title, note.description, note.tag)
+        addNote(title, description, tag)
 
+        showAlert('Note Added Successfully', 'success')
         //this will clear input fields after adding note
         setNote({ title: "", description: "", tag: "" })
     }
@@ -63,12 +70,9 @@ const AddNotes = () => {
                 />
             </div>
             <div className="mb-3">
-                <button type="button" className="btn btn-primary" onClick={handleClickAdd}>Add Note</button>
+                <button disabled={title.length <= 5 || description.length <= 5} type="button" className="btn btn-primary mx-2" onClick={handleClickAdd}>Add Note</button>
+                <Link className="btn btn-primary mx-2" to="/" role="button">Show Notes</Link>
             </div>
-            <br />
-            <hr className='' style={{ color: 'blue', height: '10px' }} />
-            <br />
-            <h2>Your Notes</h2>
         </div>
     )
 }
