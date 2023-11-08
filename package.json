@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://i-notebook-liard.vercel.app",
+  "proxy": "https://backend-chi-eight-74.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
