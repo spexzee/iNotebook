@@ -45,12 +45,12 @@
     color: gray !important;
 }
 
-.showPass p {
+.showPass label {
     margin-bottom: 9px;
     color: #fff;
 }
 
-.showPass p input {
+.showPass label input {
     margin-right: 5px;
 }
 

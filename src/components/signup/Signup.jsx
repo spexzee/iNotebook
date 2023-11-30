@@ -81,7 +81,7 @@ const Signup = (props) => {
                             required />
                     </div>
                     <div className="showPass">
-                        <p><input type="checkbox" name="showPass" id="showPass" onChange={() => setShowPass(!showPass)} />Show Password </p>
+                        <label style={{ cursor: 'pointer' }} htmlFor='showPass'><input type="checkbox" name="showPass" style={{ cursor: 'pointer' }} id="showPass" onChange={() => setShowPass(!showPass)} />Show Password </label>
                     </div>
                     <div className="btn">
                         <button type='submit'>Signup</button>

@@ -1,6 +1,6 @@
 import './login.css';
 import React, { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
@@ -69,7 +69,7 @@ const Login = (props) => {
                             required />
                     </div>
                     <div className="showPass">
-                        <p><input type="checkbox" name="showPass" id="showPass" onChange={() => setPassword(!password)} />Show Password </p>
+                        <label htmlFor='showPass' style={{ cursor: 'pointer' }}><input type="checkbox" name="showPass" style={{ cursor: 'pointer' }} id="showPass" onChange={() => setPassword(!password)} />Show Password </label>
                     </div>
                     <div className="btn">
                         <button type='submit'>Login</button>
