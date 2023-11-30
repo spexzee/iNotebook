@@ -137,6 +137,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
+    z-index: 10;
 
     text-align: end;
     background: var(--color-footer);
@@ -190,6 +191,7 @@
 
     .note__navbar-menu_container {
         top: 20px;
+
     }
 
     .note__navbar-menu_container-links-sign {
