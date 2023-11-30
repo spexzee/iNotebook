@@ -1,6 +1,6 @@
 import './login.css';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
@@ -35,6 +35,7 @@ const Login = (props) => {
     const onChange = (e) => {
         setCred({ ...cred, [e.target.name]: e.target.value })
     }
+    const [password, setPassword] = useState(true);
     return (
         <div className='app__login'>
             <div className="app__login-container">
@@ -61,14 +62,14 @@ const Login = (props) => {
                         <input
                             value={cred.password}
                             onChange={onChange}
-                            type="password"
+                            type={password ? 'password' : 'text'}
                             id="password"
                             name="password"
-                            placeholder='*********'
+                            placeholder='password'
                             required />
                     </div>
                     <div className="showPass">
-                        <p><input type="checkbox" name="showPass" id="showPass" />Show Password </p>
+                        <p><input type="checkbox" name="showPass" id="showPass" onChange={() => setPassword(!password)} />Show Password </p>
                     </div>
                     <div className="btn">
                         <button type='submit'>Login</button>

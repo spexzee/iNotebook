@@ -173,6 +173,10 @@
     .note__navbar {
         padding: 2rem 4rem;
     }
+
+    .note__navbar-links_logo h3 {
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width:550px) {

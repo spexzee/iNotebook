@@ -31,7 +31,7 @@ const Navbar = (props) => {
             <div className="note__navbar-links">
                 <div className="note__navbar-links_logo" style={{ display: 'flex' }}>
                     <img src={logo} alt="Logo" />
-                    <h3 className='logo' style={{ cursor: 'pointer' }} onClick={() => navigate('/')} >SPEXZEE-NOTE</h3>
+                    <h3 className='logo' style={{ cursor: 'pointer' }} onClick={() => navigate('/')} >iNote-Book</h3>
                 </div>
                 <div className="note__navbar-links_container">
                     <Menu />

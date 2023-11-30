@@ -33,10 +33,12 @@ const Signup = (props) => {
     const onChange = (e) => {
         setCred({ ...cred, [e.target.name]: e.target.value })
     }
+    const [showPass, setShowPass] = useState(true)
+
     return (
         <div className='app__signup'>
             <div className="app__signup-container">
-                <h3>Login</h3>
+                <h3>Signup</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="inputs" >
                         <label htmlFor="name" className="form-label text-white">
@@ -72,19 +74,19 @@ const Signup = (props) => {
                         <input
                             value={cred.password}
                             onChange={onChange}
-                            type="password"
+                            type={showPass ? 'password' : 'text'}
                             id="password"
                             name="password"
-                            placeholder='*********'
+                            placeholder='password'
                             required />
                     </div>
                     <div className="showPass">
-                        <p><input type="checkbox" name="showPass" id="showPass" />Show Password </p>
+                        <p><input type="checkbox" name="showPass" id="showPass" onChange={() => setShowPass(!showPass)} />Show Password </p>
                     </div>
                     <div className="btn">
                         <button type='submit'>Signup</button>
                     </div>
-                    <div className="signUpLink">
+                    <div className="loginLink">
                         <p>Already have an account ? <b onClick={() => navigate('/login')}>Login</b></p>
                     </div>
                 </form>

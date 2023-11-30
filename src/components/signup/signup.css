@@ -71,22 +71,28 @@
     cursor: pointer;
 }
 
-.signUpLink p {
+.loginLink p {
     text-align: center;
     margin-top: 10px;
     color: #fff;
 }
 
-.signUpLink p .link {
+.loginLink p .link {
     text-decoration: none;
     color: #fff;
 }
 
-.signUpLink b {
+.loginLink b {
     cursor: pointer;
     font-weight: 500;
 }
 
-.signUpLink b:hover {
+.loginLink b:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width:390px) {
+    .loginLink p {
+        font-size: 10px;
+    }
 }
