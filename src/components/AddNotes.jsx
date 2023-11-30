@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../context/notes/noteContext'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const AddNotes = (props) => {
     const context = useContext(noteContext);
@@ -10,7 +11,8 @@ const AddNotes = (props) => {
     const { title, description, tag } = note;
 
     // props destructring 
-    const { showAlert } = props
+    const { showAlert } = props;
+    const navigate = useNavigate()
 
     const handleClickAdd = (e) => {
         e.preventDefault()
@@ -25,10 +27,10 @@ const AddNotes = (props) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
     return (
-        <div className='container my-3'>
-            <h2>Add Notes</h2>
+        <div className='container my-3' id='contain'>
+            <h2 className='text-white'>Add Notes</h2>
             <div className="mb-3">
-                <label htmlFor="title" className="form-label">
+                <label htmlFor="title" className="form-label text-white">
                     Title
                 </label>
                 <input
@@ -43,7 +45,7 @@ const AddNotes = (props) => {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="description" className="form-label">
+                <label htmlFor="description" className="form-label text-white">
                     Description
                 </label>
                 <textarea
@@ -58,7 +60,7 @@ const AddNotes = (props) => {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="tag" className="form-label">
+                <label htmlFor="tag" className="form-label text-white">
                     Tag
                 </label>
                 <input
@@ -71,9 +73,9 @@ const AddNotes = (props) => {
                     style={{ border: '1px solid black' }}
                 />
             </div>
-            <div className="mb-3">
-                <button disabled={title.length < 5 || description.length < 5}  type="button" className="btn btn-primary mx-2" onClick={handleClickAdd}>Add Note</button>
-                <Link className="btn btn-primary mx-2" to="/" role="button">Show Notes</Link>
+            <div className="btns" style={{ marginTop: '40px' }}>
+                <button disabled={title.length < 5 || description.length < 5} type="button" className="primary-button add-btn" onClick={handleClickAdd}>Add Note</button>
+                <button className="primary-button show-btn" type="button" onClick={() => navigate('/')}>Show Notes</button>
             </div>
         </div>
     )

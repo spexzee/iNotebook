@@ -2,7 +2,7 @@
 const About = () => {
   return (
     <>
-      <div> This inote book About</div>
+      <div className="text-white"> This inote book About. <br /><br />Yet to finish</div>
     </>
   )
 }

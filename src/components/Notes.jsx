@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import NotesItem from './NotesItem';
 import noteContext from '../context/notes/noteContext';
-import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Notes = (props) => {
@@ -15,6 +14,7 @@ const Notes = (props) => {
 
   const { showAlert } = props;
 
+  const navigate = useNavigate();
   useEffect(() => {
     const authToken = localStorage.getItem('auth-token')
     if (!authToken) {
@@ -46,8 +46,8 @@ const Notes = (props) => {
 
   return (
     <>
-      <Link className="btn btn-primary mb-3" to="/addnote" role="button">Click Here to Add Notes</Link>
-      <h2>Your Notes</h2>
+      <button className="primary-button my-3" onClick={() => navigate('/addnote')}>Click here to Add Notes</button>
+      <h2 className='text-white'>Your Notes</h2>
       <button
         ref={ref}
         type="button"
@@ -65,15 +65,16 @@ const Notes = (props) => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
-          <div className="modal-content">
+        <div className="modal-dialog"
+          style={{ border: '1px solid white' }}>
+          <div className="modal-content bg-dark text-white">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 Update Note
               </h5>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close bg-white"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               />
@@ -86,12 +87,12 @@ const Notes = (props) => {
                 <input
                   value={note.etitle}
                   type="text"
-                  className="form-control"
+                  className="form-control bg-dark text-white"
                   id="etitle"
                   required
                   name="etitle"
                   onChange={onChange}
-                  style={{ border: '1px solid black' }}
+                  style={{ border: '1px solid white' }}
                 />
               </div>
               <div className="mb-3">
@@ -100,13 +101,13 @@ const Notes = (props) => {
                 </label>
                 <textarea
                   value={note.edescription}
-                  className="form-control"
+                  className="form-control bg-dark text-white"
                   id="edescription"
                   required
                   name="edescription"
                   rows={3}
                   onChange={onChange}
-                  style={{ border: '1px solid black' }}
+                  style={{ border: '1px solid white' }}
                 />
               </div>
               <div className="mb-3">
@@ -116,11 +117,11 @@ const Notes = (props) => {
                 <input
                   value={note.etag}
                   type="text"
-                  className="form-control tags"
+                  className="form-control tags bg-dark text-white"
                   id="etag"
                   name="etag"
                   onChange={onChange}
-                  style={{ border: '1px solid black' }}
+                  style={{ border: '1px solid white' }}
                 />
               </div>
             </div>
@@ -128,20 +129,20 @@ const Notes = (props) => {
               <button
                 ref={refClose}
                 type="button"
-                className="btn btn-secondary"
+                className="primary-button bgDim"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button disabled={etitle.length < 5 || edescription.length < 5} type="button" className="btn btn-primary" onClick={handleClickAdd}>
+              <button disabled={etitle.length < 5 || edescription.length < 5} type="button" className="primary-button" onClick={handleClickAdd}>
                 Update Note
               </button>
             </div>
           </div>
         </div>
-      </div>
+      </div >
       <div className="row my-3">
-        <h1 className='text-center'>{notes.length === 0 && ' Please Add Notes to Display here!!'}</h1>
+        <h1 className='text-center' style={{ color: 'gray' }}>{notes.length === 0 && ' Please Add Notes to Display here!!'}</h1>
         {
           Array.isArray(notes) && notes.map((note) => {
             return <NotesItem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} />

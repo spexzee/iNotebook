@@ -1,5 +1,5 @@
 import './App.css';
-import { Navbar, Home, About, Login, Signup, Alert, AddNotes } from '../src/components'
+import { Home, About, Alert, AddNotes, NavbarRes } from '../src/components'
 import React, { useState } from 'react';
 import {
   BrowserRouter,
@@ -7,6 +7,8 @@ import {
   Route
 } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
+import Login from '../src/components/login/Login'
+import Signup from '../src/components/signup/Signup'
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
     <>
       <NoteState>
         <BrowserRouter>
-          <Navbar showAlert={showAlert} />
+          <NavbarRes showAlert={showAlert} />
           <Alert alert={alert} />
           <div className="container my-3">
             <Routes>
