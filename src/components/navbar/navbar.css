@@ -140,7 +140,7 @@
     z-index: 10;
 
     text-align: end;
-    background: rgba(94, 34, 106, 0.1);
+    background: var(--color-background);
     padding: 2rem;
     position: absolute;
     top: 40px;

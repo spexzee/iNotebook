@@ -19,6 +19,7 @@
     --color-blog: #042c54;
     --color-text: #81AFDD;
     --color-subtext: #FF8A71;
+    --color-background: rgb(146, 38, 162);
 }
 
 @media only screen and (max-width: 991px) and (min-width: 767px) {
