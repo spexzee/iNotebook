@@ -3,11 +3,28 @@ import noteContext from "./noteContext";
 
 const NoteState = (props) => {
     const host = 'https://backend-chi-eight-74.vercel.app'
-    const notesInitial = []
+    const notesInitial = [];
     const [notes, setNotes] = useState(notesInitial);
 
+    // users 
+    const userInitial = [];
+    const [user, setUser] = useState(userInitial);
+
+    //get user detail
+    const getUser = async () => {
+        // api call
+        const response = await fetch(`${host}/api/auth/getuser`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('auth-token')
+            }
+        });
+        const json = await response.json()
+        setUser(json)
+    }
     //get Notes note
-    const getNotes = async (title, description, tag) => {
+    const getNotes = async () => {
         // api call
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
             method: 'GET',
@@ -80,7 +97,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, user, getUser }}>
             {props.children}
         </noteContext.Provider>
     )
