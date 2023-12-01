@@ -1,3 +1,4 @@
+import Footer from "./Footer/Footer"
 
 const About = () => {
   return (
@@ -34,6 +35,7 @@ const About = () => {
             </p>
           </div>
         </div>
+        <Footer />
 
       </div>
     </>
