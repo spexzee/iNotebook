@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import './navbar.css';
 import logo from '../../assets/notebook3.png'
@@ -16,6 +16,8 @@ const Menu = () => (
 )
 
 const Navbar = (props) => {
+
+    const refClose = useRef(null);
     const { showAlert } = props
 
     const [toggleMenu, setToggleMenu] = useState(false);
@@ -49,7 +51,7 @@ const Navbar = (props) => {
             <div className="note__navbar-menu">
                 {
                     toggleMenu
-                        ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+                        ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} ref={refClose} />
                         : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
                 }
                 {toggleMenu && (
