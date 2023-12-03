@@ -14,11 +14,11 @@ const AddNotes = (props) => {
     const { showAlert } = props;
     const navigate = useNavigate()
 
-    const handleClickAdd = (e) => {
+    const handleClickAdd = async (e) => {
         e.preventDefault()
-        addNote(title, description, tag)
+        await addNote(title, description, tag)
 
-        showAlert('Note Added Successfully', 'success')
+        await showAlert('Note Added Successfully', 'success')
         //this will clear input fields after adding note
         setNote({ title: "", description: "", tag: "" })
     }

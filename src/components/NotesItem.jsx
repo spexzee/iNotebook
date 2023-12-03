@@ -19,10 +19,10 @@ const NotesItem = (props) => {
             </div>
             <div className="d-flex row-gap-1">
               <MdEdit color='blue' size={23} style={{ cursor: 'pointer' }} onClick={() => { updateNote(note) }} />
-              <MdDelete color='red' size={23} style={{ cursor: 'pointer' }} onClick={(e) => {
+              <MdDelete color='red' size={23} style={{ cursor: 'pointer' }} onClick={async (e) => {
                 e.preventDefault()
-                deleteNote(note._id)
-                showAlert('Note Deleted Successfully', 'success')
+                await deleteNote(note._id)
+                await showAlert('Note Deleted Successfully', 'success')
               }} />
 
             </div>

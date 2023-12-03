@@ -27,10 +27,10 @@ const Notes = (props) => {
   const ref = useRef(null)
   const refClose = useRef(null)
 
-  const handleClickAdd = () => {
-    editNote(id, etitle, edescription, etag)
+  const handleClickAdd = async () => {
+    await editNote(id, etitle, edescription, etag)
     refClose.current.click()
-    showAlert('Note Updated Successfully', 'success')
+    await showAlert('Note Updated Successfully', 'success')
   }
 
   const onChange = (e) => {

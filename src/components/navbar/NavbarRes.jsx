@@ -22,11 +22,21 @@ const Navbar = (props) => {
 
     const [toggleMenu, setToggleMenu] = useState(false);
     const navigate = useNavigate();
-    const handleLogout = () => {
+    const handleLogout = async () => {
         localStorage.removeItem('auth-token');
         navigate('/login')
-        showAlert('Loged out Successfully', 'success')
+        await showAlert('Loged out Successfully', 'success')
+        setTimeout(() => {
+            setToggleMenu(!toggleMenu);
+        }, 440);
     }
+
+    const handleClose = () => {
+        setTimeout(() => {
+            setToggleMenu(!toggleMenu);
+        }, 440);
+    }
+
 
     return (
         <div className="note__navbar">
@@ -57,13 +67,28 @@ const Navbar = (props) => {
                 {toggleMenu && (
                     <div className="note__navbar-menu_container scale-up-center">
                         <div className="note__navbar-menu_container-links">
-                            <Menu />
+                            <p><Link to="/" className='links' onClick={handleClose}>Home</Link></p>
+                            <p><Link to="/about" className='links' onClick={handleClose}>About</Link></p>
+                            {localStorage.getItem('auth-token')
+                                ? <p><Link to='/addnote' className='links' onClick={handleClose}>Create Note</Link></p>
+                                : ''
+                            }
                         </div>
                         <div className="note__navbar-menu_container-links-sign">
                             {!localStorage.getItem('auth-token')
                                 ? <>
-                                    <p onClick={() => navigate('/login')}>Log in</p>
-                                    <button type='button' onClick={() => navigate('/signup')}>Sign up</button>
+                                    <p onClick={() => {
+                                        navigate('/login')
+                                        setTimeout(() => {
+                                            setToggleMenu(!toggleMenu);
+                                        }, 440);
+                                    }}>Log in</p>
+                                    <button type='button' onClick={() => {
+                                        navigate('/signup')
+                                        setTimeout(() => {
+                                            setToggleMenu(!toggleMenu);
+                                        }, 440);
+                                    }}>Sign up</button>
                                 </>
                                 : <button onClick={handleLogout} role='button' className='primary-button'>Log Out</button>
                             }
