@@ -4,7 +4,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <>
-            <div className="footer">
+            <div className="footer" style={{position: 'absolute',bottom:'0'}}>
                 <div className="note__footer-links">
                     {/* <FiFacebook />
                     <FiTwitter />
