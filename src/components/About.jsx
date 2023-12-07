@@ -4,7 +4,7 @@ const About = () => {
   return (
     <>
       <div className="text-white">
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start', flexDirection: 'column', gap: '20px' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start', flexDirection: 'column', gap: '20px',marginBottom : '10rem' }}>
           <div className="">
             <h2>About our iNote-Book</h2>
             <p>
