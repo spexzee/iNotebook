@@ -117,3 +117,9 @@ a {
         margin: 4rem 2rem;
     }
 }
+
+@media screen and (min-width:1000px) {
+    #container {
+        width: 50%;
+    }
+}
