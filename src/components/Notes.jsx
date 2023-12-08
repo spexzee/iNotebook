@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import NotesItem from './NotesItem';
 import noteContext from '../context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import BarLoader from 'react-spinners/BarLoader'
 
 
 const Notes = (props) => {
@@ -13,6 +15,9 @@ const Notes = (props) => {
   const { id, etitle, edescription, etag } = note;
 
   const { showAlert } = props;
+
+  const [loading, setLoading] = useState(false)
+  const [updateLoading, setUpdateLoading] = useState(false)
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,7 +33,9 @@ const Notes = (props) => {
   const refClose = useRef(null)
 
   const handleClickAdd = async () => {
+    setUpdateLoading(true)
     await editNote(id, etitle, edescription, etag)
+    setUpdateLoading(false)
     refClose.current.click()
     await showAlert('Note Updated Successfully', 'success')
   }
@@ -135,7 +142,9 @@ const Notes = (props) => {
                 Close
               </button>
               <button disabled={etitle.length < 5 || edescription.length < 5} type="button" className="primary-button" onClick={handleClickAdd}>
-                Update Note
+                {updateLoading
+                  ? (<Icon icon="svg-spinners:3-dots-scale-middle" fontSize={27} />)
+                  : 'Update Note'}
               </button>
             </div>
           </div>
@@ -145,10 +154,20 @@ const Notes = (props) => {
         <h1 className='text-center' style={{ color: 'gray' }}>{notes.length === 0 && ' Please Add Notes to Display here!!'}</h1>
         {
           Array.isArray(notes) && notes.map((note) => {
-            return <NotesItem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} />
+            return <NotesItem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} setLoading={setLoading} />
           })
         }
       </div>
+      {loading ? (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30vh', position: 'relative', top: '-27rem' }}>
+          <div className="loading-screen" style={{
+            zIndex: 100, height: '10vh', width: '20%', color: 'red', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'
+          }}>
+            <h1>Deleting...</h1 >
+            <BarLoader color="red" />
+          </div >
+        </div>
+      ) : ''}
     </>
   )
 }

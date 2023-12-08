@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import './signup.css'
+import { Icon } from '@iconify/react';
 
 const Signup = (props) => {
     const host = 'https://backend-chi-eight-74.vercel.app';
@@ -11,7 +12,10 @@ const Signup = (props) => {
     // props destructring 
     const { showAlert } = props
 
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = async (e) => {
+        setLoading(true);
         e.preventDefault()
         const response = await fetch(`${host}/api/auth/createuser`, {
             method: "POST",
@@ -28,6 +32,7 @@ const Signup = (props) => {
         else {
             showAlert('Invalid Inputs', 'danger')
         }
+        setLoading(false);
     }
 
     const onChange = (e) => {
@@ -84,7 +89,7 @@ const Signup = (props) => {
                         <label style={{ cursor: 'pointer' }} htmlFor='showPass'><input type="checkbox" name="showPass" style={{ cursor: 'pointer' }} id="showPass" onChange={() => setShowPass(!showPass)} />Show Password </label>
                     </div>
                     <div className="btn">
-                        <button type='submit'>Signup</button>
+                        <button type='submit'>{loading ? (<Icon icon="svg-spinners:3-dots-scale-middle" fontSize={41} />) : 'Signup'}</button>
                     </div>
                     <div className="loginLink">
                         <p>Already have an account ? <b onClick={() => navigate('/login')}>Login</b></p>

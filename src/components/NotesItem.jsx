@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext';
 
 const NotesItem = (props) => {
 
-  const { showAlert } = props;
+  const { showAlert, setLoading } = props;
 
   const context = useContext(noteContext);
   const { deleteNote } = context;
@@ -20,8 +20,10 @@ const NotesItem = (props) => {
             <div className="d-flex row-gap-1">
               <MdEdit color='blue' size={23} style={{ cursor: 'pointer' }} onClick={() => { updateNote(note) }} />
               <MdDelete color='red' size={23} style={{ cursor: 'pointer' }} onClick={async (e) => {
+                setLoading(true)
                 e.preventDefault()
                 await deleteNote(note._id)
+                setLoading(false)
                 await showAlert('Note Deleted Successfully', 'success')
               }} />
 

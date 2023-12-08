@@ -1,6 +1,7 @@
 import './login.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 
 const Login = (props) => {
@@ -11,8 +12,11 @@ const Login = (props) => {
     // props destructring 
     const { showAlert } = props
 
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        setLoading(true);
+        e.preventDefault();
         const response = await fetch(`${host}/api/auth/login`, {
             method: 'POST',
             headers: {
@@ -20,7 +24,7 @@ const Login = (props) => {
             },
             body: JSON.stringify({ email: cred.email, password: cred.password })
         });
-        const json = await response.json()
+        const json = await response.json();
         console.log(json);
         if (json.success) {
             window.localStorage.setItem('auth-token', json.authtoken);//save the authtoken in local storage for tempararily
@@ -28,8 +32,9 @@ const Login = (props) => {
             navigate('/')
         }
         else {
-            showAlert('Invalid Inputs', 'danger')
+            showAlert('Invalid Inputs', 'danger');
         }
+        setLoading(false);
     }
 
     const onChange = (e) => {
@@ -72,7 +77,7 @@ const Login = (props) => {
                         <label htmlFor='showPass' style={{ cursor: 'pointer' }}><input type="checkbox" name="showPass" style={{ cursor: 'pointer' }} id="showPass" onChange={() => setPassword(!password)} />Show Password </label>
                     </div>
                     <div className="btn">
-                        <button type='submit'>Login</button>
+                        <button type='submit'>{loading ? (<Icon icon="svg-spinners:3-dots-scale-middle" fontSize={41} />) : 'Login'}</button>
                     </div>
                     <div className="signUpLink">
                         <p>Don't have an account ? <b onClick={() => navigate('/signup')}>Register</b></p>
