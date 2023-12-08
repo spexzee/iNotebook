@@ -9,6 +9,7 @@ import {
 import NoteState from './context/notes/NoteState';
 import Login from '../src/components/login/Login'
 import Signup from '../src/components/signup/Signup'
+import User from './components/User';
 
 
 function App() {
@@ -38,13 +39,19 @@ function App() {
               </Route>
               <Route path="/about" element={<About />}>
               </Route>
-              <Route path="/addnote" element={<AddNotes showAlert={showAlert} />
-              }>
-              </Route>
+              {localStorage.getItem('auth-token') &&
+                <Route path="/addnote" element={<AddNotes showAlert={showAlert} />
+                }>
+                </Route>}
               <Route path="/login" element={<Login showAlert={showAlert} />}>
               </Route>
               <Route path="/signup" element={<Signup showAlert={showAlert} />}>
               </Route>
+              {
+                localStorage.getItem('auth-token') &&
+                <Route path="/user" element={<User />}>
+                </Route>
+              }
             </Routes>
           </div>
         </BrowserRouter>

@@ -137,7 +137,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
-    z-index: 10;
+    z-index: 10w;
 
     text-align: end;
     background: var(--color-footer);
@@ -158,6 +158,31 @@
 .note__navbar-menu_container-links-sign {
     display: none;
 }
+
+.note__navbar-profile {
+    display: flex;
+    justify-content: end;
+    width: 5%;
+}
+
+.note__navbar-profile_circle {
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 41px;
+    outline: 10px;
+    height: 41px;
+    overflow: hidden;
+    cursor: pointer;
+
+    background: #bb0fde;
+
+}
+
+.note__navbar-profile_circle img {
+    width: 100%;
+    object-fit: cover;
+}
+
 
 @media screen and (max-width:1050px) {
     .note__navbar-links_container {

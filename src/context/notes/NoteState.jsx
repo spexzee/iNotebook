@@ -5,7 +5,6 @@ const NoteState = (props) => {
     const host = 'https://backend-chi-eight-74.vercel.app'
     const notesInitial = [];
     const [notes, setNotes] = useState(notesInitial);
-
     // users 
     const userInitial = [];
     const [user, setUser] = useState(userInitial);
@@ -14,7 +13,7 @@ const NoteState = (props) => {
     const getUser = async () => {
         // api call
         const response = await fetch(`${host}/api/auth/getuser`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('auth-token')
@@ -23,6 +22,7 @@ const NoteState = (props) => {
         const json = await response.json()
         setUser(json)
     }
+
     //get Notes note
     const getNotes = async () => {
         // api call
@@ -97,7 +97,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, user, getUser }}>
+        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, getUser, user }}>
             {props.children}
         </noteContext.Provider>
     )
