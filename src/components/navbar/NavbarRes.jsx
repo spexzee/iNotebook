@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import './navbar.css';
-import logo from '../../assets/notebook3.png'
 import { Link, useNavigate } from 'react-router-dom';
 import noteContext from '../../context/notes/noteContext';
 
@@ -67,13 +66,6 @@ const Navbar = (props) => {
                     : <button onClick={handleLogout} role='button' className='primary-button'>Log Out</button>
                 }
             </div>
-            {localStorage.getItem('auth-token') && <div className="note__navbar-profile">
-                <Link to='/user'>
-                    <div className='note__navbar-profile_circle' >
-                        <img src={user.profilePic} alt="profilePic" />
-                    </div>
-                </Link>
-            </div>}
             <div className="note__navbar-menu">
                 {
                     toggleMenu
