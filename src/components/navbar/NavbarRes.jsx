@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import './navbar.css';
 import logo from '../../assets/notebook3.png'
 import { Link, useNavigate } from 'react-router-dom';
+import noteContext from '../../context/notes/noteContext';
 
 const Menu = () => (
     <>
@@ -16,6 +17,8 @@ const Menu = () => (
 )
 
 const Navbar = (props) => {
+    const context = useContext(noteContext);
+    const { user, getUser } = context;
 
     const refClose = useRef(null);
     const { showAlert } = props
@@ -36,6 +39,12 @@ const Navbar = (props) => {
             setToggleMenu(!toggleMenu);
         }, 440);
     }
+    useEffect(() => {
+        if (localStorage.getItem('auth-token')) {
+            getUser();
+        }
+    }, [])
+
 
 
     return (
@@ -61,7 +70,7 @@ const Navbar = (props) => {
             {localStorage.getItem('auth-token') && <div className="note__navbar-profile">
                 <Link to='/user'>
                     <div className='note__navbar-profile_circle' >
-                        <img src="https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" alt="profile_pic" />
+                        <img src={user.profilePic} alt="profilePic" />
                     </div>
                 </Link>
             </div>}
