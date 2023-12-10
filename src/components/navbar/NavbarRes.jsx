@@ -58,6 +58,7 @@ const Navbar = (props) => {
                     <Menu />
                 </div>
             </div>
+
             <div className="note__navbar-sign">
                 {!localStorage.getItem('auth-token')
                     ? <>
@@ -67,6 +68,13 @@ const Navbar = (props) => {
                     : <button onClick={handleLogout} role='button' className='primary-button'>Log Out</button>
                 }
             </div>
+            {localStorage.getItem('auth-token') && <div className="note__navbar-profile">
+                <Link to='/user'>
+                    <div className='note__navbar-profile_circle' >
+                        <img src='https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg' alt="profilePic" />
+                    </div>
+                </Link>
+            </div>}
             <div className="note__navbar-menu">
                 {
                     toggleMenu
