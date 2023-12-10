@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import './navbar.css';
+import logo from '../../assets/notebook3.png'
 import { Link, useNavigate } from 'react-router-dom';
 import noteContext from '../../context/notes/noteContext';
 
